@@ -1,0 +1,9 @@
+Error 1:
+No se comprueba en anyadirActividad(String[] datos) de la clase ClubDeportivo que datos tenga una longitud minima de 5 para poder formar un grupo.
+
+Error 2:
+En el método matricular de la clase clubDeportivo no se reduce el numero de personas a 0 en el else (cuando npersonas < plazasGrupo).
+
+Error 3:
+En anyadirActividad(Grupo g) DE clubDeportivo, se incrementa ngrupos cada vez que se añade un grupo, pero no se comprueba si el array está lleno. 
+Si ngrupos llega al tamaño máximo del array grupos, se lanzará un error de ArrayIndexOutOfBoundsException.
