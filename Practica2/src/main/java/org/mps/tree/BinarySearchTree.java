@@ -53,19 +53,32 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
 
     @Override
     public T minimum() {
-        // TODO
-        return null;
+        if(this.value == null){
+            throw new BinarySearchTreeException("Arbol Binario Vacio");
+
+        }else if(this.left != null){
+            this.left.minimum();
+        }
+        return this.value;         
     }
 
     @Override
     public T maximum() {
-        // TODO
-        return null;
+        if(this.value == null){
+            throw new BinarySearchTreeException("Arbol Binario Vacio");
+
+        }else if(this.right != null){
+            this.right.maximum();
+        }
+        return this.value; 
     }
 
     @Override
     public void removeBranch(T value){
-        // TODO
+        if(!contains(value)){
+            throw new BinarySearchTreeException("Valor No Hallado");
+        }
+
     }
 
     @Override
