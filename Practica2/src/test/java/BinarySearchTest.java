@@ -220,4 +220,136 @@ public class BinarySearchTest {
             assertEquals(3, bst.size());
         }
     }
+
+    @Nested
+    @DisplayName("Pruebas para minimum")
+    class minimumTests{
+
+        Comparator<Integer> comparator;
+        BinarySearchTree<Integer> bst;
+
+        @BeforeEach
+        void setup(){
+            comparator = Integer::compareTo;
+            bst = new BinarySearchTree<>(comparator);
+        }
+
+        @Test
+        @DisplayName("Arbol Binario nulo")
+        void minimum_whenBinarySearchTreeIsNull_returnsBinarySearchTreeException(){
+            assertThrows(BinarySearchTreeException.class, ()-> bst.minimum());
+        }
+
+        @Test
+        @DisplayName("Hijo izquierdo existente")
+        void minimum__whenTreeHasLeftChild_returnsLeftMostValue(){
+            bst.insert(10);
+            bst.insert(5);
+            bst.insert(3);
+            assertEquals(3, bst.minimum());
+        }
+    }
+
+    @Nested
+    @DisplayName("Pruebas para maximum")
+    class maximumTests{
+
+        Comparator<Integer> comparator;
+        BinarySearchTree<Integer> bst;
+
+        @BeforeEach
+        void setup(){
+            comparator = Integer::compareTo;
+            bst = new BinarySearchTree<>(comparator);
+        }
+
+        @Test
+        @DisplayName("Arbol Binario nulo")
+        void maximum_whenBinarySearchTreeIsNull_returnsBinarySearchTreeException(){
+            assertThrows(BinarySearchTreeException.class, ()-> bst.maximum());
+        }
+
+        @Test
+        @DisplayName("Hijo derecho existente")
+        void maximum__whenTreeHasRightChild_returnsRightMostValue(){
+            bst.insert(10);
+            bst.insert(12);
+            bst.insert(15);
+            assertEquals(15, bst.maximum());
+        }
+    }
+
+    @Nested
+    @DisplayName("Pruebas para maximum")
+    class removeBranchTests{
+
+        Comparator<Integer> comparator;
+        BinarySearchTree<Integer> bst;
+
+        @BeforeEach
+        void setup(){
+            comparator = Integer::compareTo;
+            bst = new BinarySearchTree<>(comparator);
+        }
+
+        @Test
+        @DisplayName("Valor no encontrado")
+        void removeBranch_whenValueIsNotFound_returnsBinarySearchTreeException(){
+            assertThrows(BinarySearchTreeException.class, ()->bst.removeBranch(10));
+        }
+
+        @Test
+        @DisplayName("Valor encontrado a la derecha")
+        void removeBranch_whenValueIsFound_removeRightNodeFromTree(){
+            bst.insert(10);
+            bst.insert(12);
+            bst.insert(2);
+            bst.insert(15);
+            bst.removeBranch(12);
+            assertEquals("10(2,)", bst.render());
+        }
+
+        @Test
+        @DisplayName("Valor encontrado a la izquierda")
+        void removeBranch_whenValueIsFound_removeLeftNodeFromTree(){
+            bst.insert(10);
+            bst.insert(12);
+            bst.insert(2);
+            bst.insert(5);
+            bst.removeBranch(2);
+            assertEquals("10(,12)", bst.render());
+        }
+
+    }
+
+    @Nested
+    @DisplayName("Pruebas para maximum")
+    class depthTests{
+
+        Comparator<Integer> comparator;
+        BinarySearchTree<Integer> bst;
+
+        @BeforeEach
+        void setup(){
+            comparator = Integer::compareTo;
+            bst = new BinarySearchTree<>(comparator);
+        }
+
+        @Test
+        @DisplayName("Arbol Nulo")
+        void depth_whenTreeIsNull_returnsZero(){
+            assertEquals(0, bst.depth());
+        }
+
+        @Test
+        @DisplayName("Arbol con altura mayor que cero")
+        void depth_whenTreeNotNull_returnsDepthOfTree(){
+            bst.insert(10);
+            bst.insert(8);
+            bst.insert(9);
+            bst.insert(11);
+            assertEquals(3, bst.depth());
+        }
+
+    }
 }
