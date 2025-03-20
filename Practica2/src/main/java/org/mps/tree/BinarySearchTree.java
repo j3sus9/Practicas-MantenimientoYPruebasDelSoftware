@@ -31,24 +31,61 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     }
 
     public BinarySearchTree(Comparator<T> comparator) {
-        // TODO
+        this.comparator = comparator;
+        value = null;
+        left = null;
+        right = null;
     }
 
     @Override
     public void insert(T value) {
-        // TODO
+        if(this.value == null){
+            this.value = value;
+        }else{
+            int aux = comparator.compare(this.value, value);
+            if(aux > 0){
+                if(left == null){
+                    this.left = new BinarySearchTree<>(comparator);
+                }
+                left.insert(value);
+            }else if(aux < 0){
+                if(right == null){
+                    this.right = new BinarySearchTree<>(comparator);
+                }
+                right.insert(value);
+            }else{
+                throw new BinarySearchTreeException("El elemento ya se encuentra en el arbol");
+            }
+        }
     }
 
     @Override
     public boolean isLeaf() {
-        // TODO
-        return false;
+        if(this.value == null){
+            throw new BinarySearchTreeException("El arbol esta vacio");
+        }else{
+            return ((this.left == null) || (this.right == null));
+        }
     }
 
     @Override
     public boolean contains(T value) {
-        // TODO
-        return false;
+        boolean res = false;
+        if(this.value != null){
+            int aux = comparator.compare(this.value, value);
+            if(aux > 0){
+                if(left != null){
+                    res = this.left.contains(value);
+                }
+            }else if(aux < 0){
+                if(right != null){
+                    res = this.right.contains(value);
+                }
+            }else{
+                res = true;
+            }
+        }
+        return res;
     }
 
     @Override
@@ -70,14 +107,34 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
 
     @Override
     public int size() {
-        //TODO
-        return 0;
+        int num = 0;
+        if(this.value != null){
+            num++;
+            if(this.left != null){
+                num += this.left.size();
+            }
+            if(this.right != null){
+                num += this.right.size();
+            }
+        }
+        return num;
     }
 
     @Override
     public int depth() {
-        // TODO
-        return 0;
+        int num1 = 0;
+        int num2 = 0;
+        if(this.value != null){
+            num1++;
+            num2++;
+            if(this.left != null){
+                num1 += this.left.depth();
+            }
+            if(this.right != null){
+                num2 += this.right.depth();
+            }
+        }
+        return (num1 > num2 ? num1 : num2);
     }
 
     // Complex operations

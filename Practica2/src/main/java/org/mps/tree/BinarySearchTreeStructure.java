@@ -22,6 +22,7 @@ public interface BinarySearchTreeStructure<T> {
      *
      * @return {@code true} if this binary tree has no children
      * @throws BinarySearchTreeException if the binary tree is empty
+     * @throws BinarySearchTreeException if the binary tree already contains the element
      */
     boolean isLeaf();
 
