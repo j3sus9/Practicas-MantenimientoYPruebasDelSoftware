@@ -115,7 +115,24 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
         if(!contains(value)){
             throw new BinarySearchTreeException("Valor No Hallado");
         }
-
+        borrarRama(value);
+    }
+    
+    private void borrarRama(T value){
+            int aux = comparator.compare(this.value, value);
+            if(aux > 0){
+                if(left != null){
+                    this.left.borrarRama(value);
+                }
+            }else if(aux < 0){
+                if(right != null){
+                    this.right.borrarRama(value);
+                }
+            }else{
+                this.value = null;
+                this.left = null;
+                this.right = null;
+            }
     }
 
     @Override
