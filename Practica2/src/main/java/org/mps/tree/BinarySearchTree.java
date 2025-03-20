@@ -64,7 +64,7 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
         if(this.value == null){
             throw new BinarySearchTreeException("El arbol esta vacio");
         }else{
-            return ((this.left == null) || (this.right == null));
+            return ((this.left == null) && (this.right == null));
         }
     }
 
@@ -94,7 +94,7 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
             throw new BinarySearchTreeException("Arbol Binario Vacio");
 
         }else if(this.left != null){
-            this.left.minimum();
+            return this.left.minimum();
         }
         return this.value;         
     }
@@ -105,7 +105,7 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
             throw new BinarySearchTreeException("Arbol Binario Vacio");
 
         }else if(this.right != null){
-            this.right.maximum();
+            return this.right.maximum();
         }
         return this.value; 
     }
