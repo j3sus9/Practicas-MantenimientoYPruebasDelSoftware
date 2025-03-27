@@ -5,7 +5,9 @@
 
 package org.mps.tree;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     private Comparator<T> comparator;
@@ -171,4 +173,80 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     // Complex operations
     // (Estas operaciones se incluirán más adelante para ser realizadas en la segunda
     // sesión de laboratorio de esta práctica)
+
+    private T findMin() {
+        if (left == null) {
+            return value;
+        }
+        return left.findMin();
+    }
+
+    @Override
+    public void removeValue(T value) {
+        if (this.value == null) {
+            throw new BinarySearchTreeException("El árbol está vacío");
+        }
+
+        BinarySearchTree<T> newRoot = removeNode(value);
+        if (newRoot == null) { // Si el árbol queda vacío
+            this.value = null;
+            this.left = null;
+            this.right = null;
+        } else { // Actualizar los atributos del nodo raíz
+            this.value = newRoot.value;
+            this.left = newRoot.left;
+            this.right = newRoot.right;
+        }
+    }
+
+    private BinarySearchTree<T> removeNode(T value) {
+        if (this.value == null) {
+            return null;
+        }
+    
+        int comparison = comparator.compare(this.value, value);
+    
+        if (comparison > 0) { // Buscar en el subárbol izquierdo
+            if (left != null) {
+                left = left.removeNode(value);
+            }
+        } else if (comparison < 0) { // Buscar en el subárbol derecho
+            if (right != null) {
+                right = right.removeNode(value);
+            }
+        } else { // Nodo encontrado
+            if (left == null && right == null) { // Nodo hoja
+                return null;
+            } else if (left != null && right == null) { // Solo hijo izquierdo
+                return left;
+            } else if (left == null && right != null) { // Solo hijo derecho
+                return right;
+            } else { // Dos hijos
+                T minValue = right.findMin();
+                this.value = minValue;
+                right = right.removeNode(minValue);
+            }
+        }
+        return this;
+    }
+
+    @Override
+    public List<T> inOrder() {
+        List<T> result = new ArrayList<>();
+        if (left != null) {
+            result.addAll(left.inOrder());
+        }
+        if (value != null) {
+            result.add(value);
+        }
+        if (right != null) {
+            result.addAll(right.inOrder());
+        }
+        return result;
+    }
+
+    @Override
+    public void balance(){
+        //TO DO;
+    }
 }

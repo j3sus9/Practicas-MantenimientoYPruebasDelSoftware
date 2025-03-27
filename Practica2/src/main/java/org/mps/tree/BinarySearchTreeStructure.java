@@ -1,5 +1,7 @@
 package org.mps.tree;
 
+import java.util.List;
+
 /**
  * A binary search tree is a binary tree in which each node has a value and two subtrees, and for each node
  * all elements in the left subtree are less than the node value, and all elements in the right
@@ -21,8 +23,7 @@ public interface BinarySearchTreeStructure<T> {
      * Returns {@code true} if the binary search tree has no children.
      *
      * @return {@code true} if this binary tree has no children
-     * @throws BinarySearchTreeException if the binary tree is empty
-     * @throws BinarySearchTreeException if the binary tree already contains the element
+     * @throws BinaryTreeException if the binary tree is empty
      */
     boolean isLeaf();
 
@@ -41,7 +42,7 @@ public interface BinarySearchTreeStructure<T> {
      * Returns minimum value of the binary search tree.
      *
      * @return the minimum value of the binary search tree
-     * @throws BinarySearchTreeException if the binary tree is empty
+     * @throws BinaryTreeException if the binary tree is empty
      */
     T minimum();
 
@@ -49,13 +50,13 @@ public interface BinarySearchTreeStructure<T> {
      * Returns maximum value of the binary search tree.
      *
      * @return the maximum value of the binary search tree
-     * @throws BinarySearchTreeException if the binary tree is empty
+     * @throws BinaryTreeException if the binary tree is empty
      */
     T maximum();
 
     /**
      * Remove the branch with the specified value from the binary search tree.
-     * @throws BinarySearchTreeException if the element is not present in the binary search tree
+     * @throws BinaryTreeException if the element is not present in the binary search tree
      */
     void removeBranch(T value);
 
@@ -74,6 +75,25 @@ public interface BinarySearchTreeStructure<T> {
     int depth();
 
     // Complex operations
-    // (Estas operaciones se incluirán más adelante para ser realizadas en la segunda
-    // sesión de laboratorio de esta práctica)
+
+    /**
+     * Removes the first occurrence of the specified element from this binary search tree, if it is present.
+     *
+     * @param value to be removed from this binary tree, if present
+     * @throws BinaryTreeException if the element is not present in the binary tree
+     */
+    void removeValue(T value);
+
+    /**
+     * Returns a List of all the values of the tree in order.
+     *
+     * @return a List of all the values of the tree in order
+     */
+    List<T> inOrder();
+
+    /**
+     * Balance the binary search tree. Making the depth of the
+     * left and right subtrees of every node differ by at most one.
+     */
+    void balance();
 }
