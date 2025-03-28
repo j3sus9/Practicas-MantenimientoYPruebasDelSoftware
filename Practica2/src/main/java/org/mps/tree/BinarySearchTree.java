@@ -200,10 +200,6 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     }
 
     private BinarySearchTree<T> removeNode(T value) {
-        if (this.value == null) {
-            return null;
-        }
-    
         int comparison = comparator.compare(this.value, value);
     
         if (comparison > 0) { // Buscar en el subárbol izquierdo
@@ -247,6 +243,26 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
 
     @Override
     public void balance(){
-        //TO DO;
+        List<T> valoresOrdenados = inOrder(); // Obtener los valores en orden 
+        BinarySearchTree<T> arbolBalanceado = arbolBalanceado(valoresOrdenados, 0, valoresOrdenados.size() - 1); //Crear arbol balanceado
+    
+        this.value = arbolBalanceado.value; //Actualizar arbol binario
+        this.left = arbolBalanceado.left;
+        this.right = arbolBalanceado.right;
+    }
+
+    private BinarySearchTree<T> arbolBalanceado(List<T> valoresOrdenados, int comienzo, int fin) {
+        if (comienzo > fin) {
+            return null;
+        }
+    
+        int mitad = (comienzo + fin) / 2;
+        BinarySearchTree<T> nodo = new BinarySearchTree<>(comparator);
+        nodo.value = valoresOrdenados.get(mitad);
+    
+        nodo.left = arbolBalanceado(valoresOrdenados, comienzo, mitad - 1);
+        nodo.right = arbolBalanceado(valoresOrdenados, mitad + 1, fin);
+    
+        return nodo;
     }
 }
