@@ -4,6 +4,7 @@
  */
 
 import java.util.Comparator;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -351,5 +352,48 @@ public class BinarySearchTest {
             assertEquals(3, bst.depth());
         }
 
+    }
+
+    @Nested
+    @DisplayName("Pruebas para inOrder")
+    class inOrderTests{
+
+        Comparator<Integer> comparator;
+        BinarySearchTree<Integer> bst;
+
+        @BeforeEach
+        void setup(){
+            comparator = Integer::compareTo;
+            bst = new BinarySearchTree<>(comparator);
+        }
+
+        @Test
+        @DisplayName("Árbol vacío devuelve lista vacía")
+        void inOrder_EmptyTree_ReturnsEmptyList(){
+            assertEquals(List.of(), bst.inOrder());
+        }
+
+        @Test
+        @DisplayName("Árbol con un nodo devuelve lista con ese nodo")
+        void inOrder_ValueNotNull_ReturnsValue(){
+            bst.insert(10);
+            assertEquals(List.of( 10), bst.inOrder());
+        }
+
+        @Test
+        @DisplayName("Árbol con hijo izquierdo devuelve lista con hijo izquierdo")
+        void inOrder_LeftChild_ReturnsLeft(){
+            bst.insert(10);
+            bst.insert(8);
+            assertEquals(List.of(8, 10), bst.inOrder());
+        }
+
+        @Test
+        @DisplayName("Árbol con hijo derecho devuelve lista con hijo derecho")
+        void inOrder_RightChild_ReturnsRight(){
+            bst.insert(10);
+            bst.insert(12);
+            assertEquals(List.of( 10, 12), bst.inOrder());
+        }
     }
 }
