@@ -171,13 +171,136 @@ public class RonQI2SilverTest {
      * y si ambos sensores superan o son iguales a sus umbrales, que son thresholdP = 20.0f y thresholdS = 30.0f;, 
      * se considera que hay una apnea en proceso. Si hay menos de 5 lecturas también debería realizar la media.
      */
-    /*
+    
     @Test
-    @DisplayName("Evaluar las ultimas 5 lecturas para ver si hay una apnea en proceso")
+    @DisplayName("Evaluar las ultimas 5 lecturas para ver si hay una apnea en proceso - HAY")
     void evaluarApneaSuenyo_ApneaEnProceso_DevuelveTrue(){
-        
+        //Arrange
+        when(dispositivosilver.leerSensorPresion()).thenReturn(25f);
+        when(dispositivosilver.leerSensorSonido()).thenReturn(35f);
+
+        //Act
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+
+        //Assert
+        assertEquals(true, ronqi2silver.evaluarApneaSuenyo());
     }
-    */
+
+    @Test
+    @DisplayName("Evaluar las ultimas 5 lecturas para ver si hay una apnea en proceso pero no hay porque los sensores no superan sus umbrales")
+    void evaluarApneaSuenyo_NoApneaEnProcesoSensoresMenores_DevuelveTrue(){
+        //Arrange
+        when(dispositivosilver.leerSensorPresion()).thenReturn(15f);
+        when(dispositivosilver.leerSensorSonido()).thenReturn(25f);
+
+        //Act
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+
+        //Assert
+        assertEquals(false, ronqi2silver.evaluarApneaSuenyo());
+    }
+    
+    @Test
+    @DisplayName("Evaluar las ultimas 5 lecturas para ver si hay una apnea en proceso pero no hay porque el sensor de sonido no supera su umbral")
+    void evaluarApneaSuenyo_NoApneaEnProcesoSensorSonidoMenor_DevuelveTrue(){
+        //Arrange
+        when(dispositivosilver.leerSensorPresion()).thenReturn(25f);
+        when(dispositivosilver.leerSensorSonido()).thenReturn(25f);
+
+        //Act
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+
+        //Assert
+        assertEquals(false, ronqi2silver.evaluarApneaSuenyo());
+    }
+    
+    @Test
+    @DisplayName("Evaluar las ultimas 5 lecturas para ver si hay una apnea en proceso pero no hay porque el sensor de presión no supera su umbral")
+    void evaluarApneaSuenyo_NoApneaEnProcesoSensorPresionMenor_DevuelveTrue(){
+        //Arrange
+        when(dispositivosilver.leerSensorPresion()).thenReturn(15f);
+        when(dispositivosilver.leerSensorSonido()).thenReturn(35f);
+
+        //Act
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+
+        //Assert
+        assertEquals(false, ronqi2silver.evaluarApneaSuenyo());
+    }
+
+    //TESTS obtenerNuevaLectura()
+    @Test
+    @DisplayName("Añadir nuevas lecturas sin superar el número máximo de lecturas")
+    void obtenerNuevaLectura_TamañoNoSuperado_AñadeCorrectamente(){
+        //Arrange
+        when(dispositivosilver.leerSensorPresion()).thenReturn(10f);
+        when(dispositivosilver.leerSensorSonido()).thenReturn(20f);
+
+        //Act
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+    }
+
+    @Test
+    @DisplayName("Añadir nuevas lecturas superando el número máximo de lecturas")
+    void obtenerNuevaLectura_TamañoSuperado_AñadeCorrectamente(){
+        //Arrange
+        when(dispositivosilver.leerSensorPresion()).thenReturn(10f);
+        when(dispositivosilver.leerSensorSonido()).thenReturn(20f);
+
+        //Act
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+        ronqi2silver.obtenerNuevaLectura();
+    }
+
+    //TESTS estaConectado()
+    @Test
+    @DisplayName("Cuando el dispositvo está conectado se devuelve true")
+    void estaConectado_DispositivoConectado_DevuelveTrue(){
+        //Arrange
+        when(dispositivosilver.estaConectado()).thenReturn(true);
+
+        //Act
+        boolean res = ronqi2silver.estaConectado();
+
+        //Assert
+        assertEquals(true, res);
+    }
+
+    @Test
+    @DisplayName("Cuando el dispositvo está conectado se devuelve false")
+    void estaConectado_DispositivoDesconectado_DevuelveTrue(){
+        //Arrange
+        when(dispositivosilver.estaConectado()).thenReturn(false);
+
+        //Act
+        boolean res = ronqi2silver.estaConectado();
+
+        //Assert
+        assertEquals(false, res);
+    }
+    
     /* Realiza un primer test para ver que funciona bien independientemente del número de lecturas.
      * Usa el ParameterizedTest para realizar un número de lecturas previas a calcular si hay apnea o no (por ejemplo 4, 5 y 10 lecturas).
      * https://junit.org/junit5/docs/current/user-guide/index.html#writing-tests-parameterized-tests

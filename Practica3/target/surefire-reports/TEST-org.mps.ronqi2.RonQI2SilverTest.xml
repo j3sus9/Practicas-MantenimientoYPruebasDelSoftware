@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="org.mps.ronqi2.RonQI2SilverTest" time="1.515" tests="9" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="org.mps.ronqi2.RonQI2SilverTest" time="1.67" tests="17" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ES"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\jesus\AppData\Local\Temp\surefire971471391999194193\surefirebooter-20250403123310347_3.jar C:\Users\jesus\AppData\Local\Temp\surefire971471391999194193 2025-04-03T12-33-10_234-jvmRun1 surefire-20250403123310347_1tmp surefire_0-20250403123310347_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\jesus\AppData\Local\Temp\surefire14139873493870271801\surefirebooter-20250403142121975_3.jar C:\Users\jesus\AppData\Local\Temp\surefire14139873493870271801 2025-04-03T14-21-21_840-jvmRun1 surefire-20250403142121975_1tmp surefire_0-20250403142121975_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\jesus\gitHubProjects\Practicas-MantenimientoYPruebasDelSoftware\Practica3\target\test-classes;C:\Users\jesus\gitHubProjects\Practicas-MantenimientoYPruebasDelSoftware\Practica3\target\classes;C:\Users\jesus\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\jesus\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\jesus\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\jesus\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\jesus\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\jesus\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\jesus\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\jesus\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\jesus\.m2\repository\org\mockito\mockito-core\5.16.0\mockito-core-5.16.0.jar;C:\Users\jesus\.m2\repository\net\bytebuddy\byte-buddy\1.15.11\byte-buddy-1.15.11.jar;C:\Users\jesus\.m2\repository\net\bytebuddy\byte-buddy-agent\1.15.11\byte-buddy-agent-1.15.11.jar;C:\Users\jesus\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\jesus\.m2\repository\org\mockito\mockito-junit-jupiter\5.16.0\mockito-junit-jupiter-5.16.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\jesus\AppData\Local\Temp\surefire971471391999194193\surefirebooter-20250403123310347_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\jesus\AppData\Local\Temp\surefire14139873493870271801\surefirebooter-20250403142121975_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.6+8-LTS-188"/>
@@ -58,7 +58,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="reconectar_whenEstaConectado_DevolverFalse" classname="org.mps.ronqi2.RonQI2SilverTest" time="1.391">
+  <testcase name="obtenerNuevaLectura_TamañoNoSuperado_AñadeCorrectamente" classname="org.mps.ronqi2.RonQI2SilverTest" time="1.496">
     <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
 WARNING: A Java agent has been loaded dynamically (C:\Users\jesus\.m2\repository\net\bytebuddy\byte-buddy-agent\1.15.11\byte-buddy-agent-1.15.11.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
@@ -66,12 +66,20 @@ WARNING: If a serviceability tool is not in use, please run with -Djdk.instrumen
 WARNING: Dynamic loading of agents will be disallowed by default in a future release
 ]]></system-err>
   </testcase>
+  <testcase name="reconectar_whenEstaConectado_DevolverFalse" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.017"/>
+  <testcase name="evaluarApneaSuenyo_NoApneaEnProcesoSensorPresionMenor_DevuelveTrue" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.011"/>
+  <testcase name="estaConectado_DispositivoConectado_DevuelveTrue" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.003"/>
+  <testcase name="evaluarApneaSuenyo_NoApneaEnProcesoSensoresMenores_DevuelveTrue" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.004"/>
+  <testcase name="evaluarApneaSuenyo_ApneaEnProceso_DevuelveTrue" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.004"/>
   <testcase name="ronqi2silver_nuevoRonQI2Silver_devuelveVerdadero" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.025"/>
-  <testcase name="reconectar_whenNoEstaConectadoYSensorSonido_DevolverFalse" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.005"/>
-  <testcase name="ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConectarSensorSonido" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.007"/>
-  <testcase name="ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConectarSensorPresion" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.005"/>
-  <testcase name="reconectar_whenNoEstaConectadoYSensoresConectados_ConectarloYDevolverTrue" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.005"/>
-  <testcase name="reconectar_whenNoEstaConectadoYSensorPresion_DevolverFalse" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.005"/>
-  <testcase name="ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConfigurarSensorPresion" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.004"/>
-  <testcase name="ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConfigurarSensorSonido" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.005"/>
+  <testcase name="reconectar_whenNoEstaConectadoYSensorSonido_DevolverFalse" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.003"/>
+  <testcase name="ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConectarSensorSonido" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.005"/>
+  <testcase name="obtenerNuevaLectura_TamañoSuperado_AñadeCorrectamente" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.005"/>
+  <testcase name="ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConectarSensorPresion" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.003"/>
+  <testcase name="reconectar_whenNoEstaConectadoYSensoresConectados_ConectarloYDevolverTrue" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.004"/>
+  <testcase name="estaConectado_DispositivoDesconectado_DevuelveTrue" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.002"/>
+  <testcase name="reconectar_whenNoEstaConectadoYSensorPresion_DevolverFalse" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.002"/>
+  <testcase name="ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConfigurarSensorPresion" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.003"/>
+  <testcase name="ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConfigurarSensorSonido" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.004"/>
+  <testcase name="evaluarApneaSuenyo_NoApneaEnProcesoSensorSonidoMenor_DevuelveTrue" classname="org.mps.ronqi2.RonQI2SilverTest" time="0.004"/>
 </testsuite>

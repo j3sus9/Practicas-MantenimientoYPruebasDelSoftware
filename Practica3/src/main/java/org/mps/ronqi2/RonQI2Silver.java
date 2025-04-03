@@ -27,7 +27,7 @@ public class RonQI2Silver extends RonQI2{
         if(lecturasP.size()>numLecturas){
             lecturasP.remove(0); 
         }
-        lecturasS.add(disp.leerSensorPresion());
+        lecturasS.add(disp.leerSensorSonido()); //ERROR 1: Aqui sería leerSensorSonido()
         if(lecturasS.size()>numLecturas){
             lecturasS.remove(0); 
         }
@@ -51,15 +51,12 @@ public class RonQI2Silver extends RonQI2{
                 .average()
                 .orElse(0.0);
         
-        if (avgP>=thresholdP && avgS > thresholdS){
-            resultado = false;
+        if (avgP > thresholdP && avgS > thresholdS){ //ERROR 2: Es >, no >=
+            resultado = true; //ERROR 3.1: Aquí se devuelve true
         }   
         else{
-            resultado = true;
+            resultado = false; //ERROR 3.2: Aquí se devuelve false
         }
         return resultado;
     }
-
-   
-    
 }
