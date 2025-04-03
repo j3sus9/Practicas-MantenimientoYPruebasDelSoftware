@@ -2,6 +2,9 @@ package org.mps.ronqi2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,13 +20,9 @@ public class ronQI2Silvertest {
     void setup(){
         ronqi2silver = new RonQI2Silver();
         dispositivosilver = mock(DispositivoSilver.class);
+        ronqi2silver.disp = dispositivosilver;
     }
 
-    @Test
-    @DisplayName("Comprobar que al inicializar funciona como debe ser")
-    void ronqi2silver_whenNewRonQI2Silver_returnsInitialDispositivo(){
-        
-    }
     /*
      * Analiza con los caminos base qué pruebas se han de realizar para comprobar que al inicializar funciona como debe ser. 
      * El funcionamiento correcto es que si es posible conectar ambos sensores y configurarlos, 
@@ -35,6 +34,70 @@ public class ronQI2Silvertest {
      * Un inicializar debe configurar ambos sensores, comprueba que cuando se inicializa de forma correcta (el conectar es true), 
      * se llama una sola vez al configurar de cada sensor.
      */
+
+    @Test
+    @DisplayName("Comprobar que al inicializar funciona como debe ser")
+    void ronqi2silver_nuevoRonQI2Silver_devuelveVerdadero(){
+        when(ronqi2silver.disp.conectarSensorPresion()).thenReturn(true);
+        when(ronqi2silver.disp.configurarSensorPresion()).thenReturn(true);
+        when(ronqi2silver.disp.conectarSensorSonido()).thenReturn(true);
+        when(ronqi2silver.disp.configurarSensorSonido()).thenReturn(true);
+
+        assertEquals(ronqi2silver.inicializar(), true);
+
+        verify(ronqi2silver.disp, times(1)).configurarSensorPresion();
+        verify(ronqi2silver.disp, times(1)).configurarSensorSonido();
+    }
+
+    @Test
+    @DisplayName("Comprobar que al inicializar falla si falla ConfigurarSensorSonido")
+    void ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConfigurarSensorSonido(){
+        when(ronqi2silver.disp.conectarSensorPresion()).thenReturn(true);
+        when(ronqi2silver.disp.configurarSensorPresion()).thenReturn(true);
+        when(ronqi2silver.disp.conectarSensorSonido()).thenReturn(true);
+        when(ronqi2silver.disp.configurarSensorSonido()).thenReturn(false);
+
+        assertEquals(ronqi2silver.inicializar(), false);
+    
+    }
+
+    @Test
+    @DisplayName("Comprobar que al inicializar falla si falla ConectarSensorSonido")
+    void ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConectarSensorSonido(){
+        when(ronqi2silver.disp.conectarSensorPresion()).thenReturn(true);
+        when(ronqi2silver.disp.configurarSensorPresion()).thenReturn(true);
+        when(ronqi2silver.disp.conectarSensorSonido()).thenReturn(false);
+        when(ronqi2silver.disp.configurarSensorSonido()).thenReturn(true);
+
+        assertEquals(ronqi2silver.inicializar(), false);
+    
+    }
+
+    @Test
+    @DisplayName("Comprobar que al inicializar falla si falla ConfigurarSensorPresion")
+    void ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConfigurarSensorPresion(){
+        when(ronqi2silver.disp.conectarSensorPresion()).thenReturn(true);
+        when(ronqi2silver.disp.configurarSensorPresion()).thenReturn(false);
+        when(ronqi2silver.disp.conectarSensorSonido()).thenReturn(true);
+        when(ronqi2silver.disp.configurarSensorSonido()).thenReturn(true);
+
+        assertEquals(ronqi2silver.inicializar(), false);
+    
+    }
+
+    @Test
+    @DisplayName("Comprobar que al inicializar falla si falla ConectarSensorPresion")
+    void ronqi2silver_nuevoRonQI2Silver_devuelveFalsoConectarSensorPresion(){
+        when(ronqi2silver.disp.conectarSensorPresion()).thenReturn(false);
+        when(ronqi2silver.disp.configurarSensorPresion()).thenReturn(true);
+        when(ronqi2silver.disp.conectarSensorSonido()).thenReturn(true);
+        when(ronqi2silver.disp.configurarSensorSonido()).thenReturn(true);
+
+        assertEquals(ronqi2silver.inicializar(), false);
+    
+    }
+
+    
 
     /*
      * Un reconectar, comprueba si el dispositivo desconectado, en ese caso, conecta ambos y devuelve true si ambos han sido conectados. 
