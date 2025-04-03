@@ -1,9 +1,29 @@
 package org.mps.ronqi2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.mps.dispositivo.DispositivoSilver;
 
 public class ronQI2Silvertest {
 
-    
+    private RonQI2Silver ronqi2silver;
+    private DispositivoSilver dispositivosilver;
+
+    @BeforeEach
+    void setup(){
+        ronqi2silver = new RonQI2Silver();
+        dispositivosilver = mock(DispositivoSilver.class);
+    }
+
+    @Test
+    @DisplayName("Comprobar que al inicializar funciona como debe ser")
+    void ronqi2silver_whenNewRonQI2Silver_returnsInitialDispositivo(){
+        
+    }
     /*
      * Analiza con los caminos base qué pruebas se han de realizar para comprobar que al inicializar funciona como debe ser. 
      * El funcionamiento correcto es que si es posible conectar ambos sensores y configurarlos, 
