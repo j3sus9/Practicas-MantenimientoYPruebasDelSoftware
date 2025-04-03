@@ -263,7 +263,7 @@ public class BinarySearchTest {
             comparator = Integer::compareTo;
             bst = new BinarySearchTree<>(comparator);
         }
-
+        
         @Test
         @DisplayName("Arbol Binario nulo")
         void maximum_whenBinarySearchTreeIsNull_returnsBinarySearchTreeException(){
@@ -353,6 +353,86 @@ public class BinarySearchTest {
         }
 
     }
+    
+    @Nested
+    @DisplayName("Pruebas para removeValue")
+    class removeValue{
+
+        Comparator<Integer> comparator;
+        BinarySearchTree<Integer> bst;
+
+        @BeforeEach
+        void setup(){
+            comparator = Integer::compareTo;
+            bst = new BinarySearchTree<>(comparator);
+        }
+
+        @Test
+        @DisplayName("Borrar un elemento de un arbol vacio lanza una excepcion")
+        void removeValue_whenValueNull_returnsBinarySearchTreeException(){
+            assertThrows(BinarySearchTreeException.class, ()->bst.removeValue(1));
+        }
+        
+        @Test 
+        @DisplayName("Eliminar el unico valor del arbol")
+        void removeValue_whenOneValue_returnsEmptyTree(){
+            bst.insert(1);
+            bst.removeValue(1);
+            assertEquals("", bst.render());
+        }
+        
+        @Test
+        @DisplayName("Eliminar valor izquierdo del arbol")
+        void removeValue_whenValueIsLeft_returnsUpdatedTree(){
+            bst.insert(10);
+            bst.insert(11);
+            bst.insert(9);
+            bst.insert(8);
+            bst.removeValue(9);
+            assertEquals("10(8,11)", bst.render());
+        }
+
+
+        @Test
+        @DisplayName("Eliminar valor derecho del arbol")
+        void removeValue_whenValueIsRight_returnsUpdatedTree(){
+            bst.insert(10);
+            bst.insert(9);
+            bst.insert(11);
+            bst.insert(12);
+            bst.removeValue(11);
+            assertEquals("10(9,12)", bst.render());
+        }
+        
+        @Test
+        @DisplayName("Eliminar valor con dos hijos del arbol")
+        void removeValue_whenValueHasLeftRight_returnsUpdatedTree(){
+            bst.insert(10);
+            bst.insert(9);
+            bst.insert(12);
+            bst.insert(11);
+            bst.removeValue(10);
+            assertEquals("11(9,12)", bst.render());
+        }
+
+        @Test
+        @DisplayName("Eliminar nodo con solo hijo derecho")
+        void removeValue_whenNodeHasOnlyRightChild_returnsUpdatedTree() {
+            bst.insert(10);
+            bst.insert(15); // Nodo con solo hijo derecho
+            bst.removeValue(10); // Eliminar el nodo con solo hijo derecho
+            assertEquals("15", bst.render()); // El árbol debe quedar con el nodo 15 como raíz
+        }
+        
+        @Test
+        @DisplayName("Buscar valor inexistente")
+        void removeValue_whenValueNoExist_returnsUpdatedTree(){
+            bst.insert(10);
+            bst.removeValue(9);
+            bst.removeValue(11);
+            assertEquals("10", bst.render());
+        }
+    }
 
     @Nested
     @DisplayName("Pruebas para inOrder")
@@ -426,75 +506,5 @@ public class BinarySearchTest {
             assertEquals("6(4(,5),8(7,9))", bst.render());
         }
     
-    }
-
-    @Nested
-    @DisplayName("Pruebas para removeValue")
-    class removeValue{
-
-        Comparator<Integer> comparator;
-        BinarySearchTree<Integer> bst;
-
-        @BeforeEach
-        void setup(){
-            comparator = Integer::compareTo;
-            bst = new BinarySearchTree<>(comparator);
-        }
-
-        @Test
-        @DisplayName("Borrar un elemento de un arbol vacio lanza una excepcion")
-        void removeValue_whenValueNull_returnsBinarySearchTreeException(){
-            assertThrows(BinarySearchTreeException.class, ()->bst.removeValue(1));
-        }
-
-        @Test 
-        @DisplayName("Eliminar el unico valor del arbol")
-        void removeValue_whenOneValue_returnsEmptyTree(){
-            bst.insert(1);
-            bst.removeValue(1);
-            assertEquals("", bst.render());
-        }
-
-        @Test
-        @DisplayName("Eliminar valor izquierdo del arbol")
-        void removeValue_whenValueIsLeft_returnsUpdatedTree(){
-            bst.insert(10);
-            bst.insert(11);
-            bst.insert(9);
-            bst.insert(8);
-            bst.removeValue(9);
-            assertEquals("10(8,11)", bst.render());
-        }
-
-        @Test
-        @DisplayName("Eliminar valor derecho del arbol")
-        void removeValue_whenValueIsRight_returnsUpdatedTree(){
-            bst.insert(10);
-            bst.insert(9);
-            bst.insert(11);
-            bst.insert(12);
-            bst.removeValue(11);
-            assertEquals("10(9,12)", bst.render());
-        }
-        
-        @Test
-        @DisplayName("Eliminar valor con dos hijos del arbol")
-        void removeValue_whenValueHasLeftRight_returnsUpdatedTree(){
-            bst.insert(10);
-            bst.insert(9);
-            bst.insert(12);
-            bst.insert(11);
-            bst.removeValue(10);
-            assertEquals("11(9,12)", bst.render());
-        }
-
-        @Test
-        @DisplayName("Buscar valor inexistente")
-        void removeValue_whenValueNoExist_returnsUpdatedTree(){
-            bst.insert(10);
-            bst.removeValue(9);
-            bst.removeValue(11);
-            assertEquals("10", bst.render());
-        }
     }
 }

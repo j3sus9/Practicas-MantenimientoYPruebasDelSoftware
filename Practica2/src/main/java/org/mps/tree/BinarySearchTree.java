@@ -213,9 +213,9 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
         } else { // Nodo encontrado
             if (left == null && right == null) { // Nodo hoja
                 return null;
-            } else if (left != null && right == null) { // Solo hijo izquierdo
+            } else if (right == null) { // Solo hijo izquierdo
                 return left;
-            } else if (left == null && right != null) { // Solo hijo derecho
+            } else if (left == null) { // Solo hijo derecho
                 return right;
             } else { // Dos hijos
                 T minValue = right.findMin();

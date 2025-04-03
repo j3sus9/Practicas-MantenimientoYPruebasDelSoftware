@@ -52,6 +52,6 @@ public class BinarySearchTreeMain {
         System.out.println("Removing value 10 (root)...");
         bst.removeValue(10);
         System.out.println("Tree after removing 10: " + bst.render());
-        System.out.println("In-order traversal after removing 10: " + bst.inOrder());
+        System.out.println("In-order traversal after removing 10: " + bst.inOrder());    
     }
 }
