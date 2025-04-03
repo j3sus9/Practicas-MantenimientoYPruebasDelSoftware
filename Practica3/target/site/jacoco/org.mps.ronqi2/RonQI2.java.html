@@ -9,14 +9,14 @@ import org.mps.dispositivo.Dispositivo;
      * Inicializa el sistema ronQI2 configurando los dos sensores del dispositivo conectado.
     */
     public boolean inicializar(){
-<span class="nc" id="L12">        boolean result = false;</span>
-<span class="nc bnc" id="L13" title="All 2 branches missed.">        if (disp.conectarSensorPresion()){</span>
-<span class="nc" id="L14">            boolean confPresion = disp.configurarSensorPresion();</span>
-<span class="nc bnc" id="L15" title="All 2 branches missed.">            if (disp.conectarSensorSonido()){</span>
-<span class="nc bnc" id="L16" title="All 4 branches missed.">                result = disp.configurarSensorSonido() &amp;&amp; confPresion;</span>
+<span class="fc" id="L12">        boolean result = false;</span>
+<span class="fc bfc" id="L13" title="All 2 branches covered.">        if (disp.conectarSensorPresion()){</span>
+<span class="fc" id="L14">            boolean confPresion = disp.configurarSensorPresion();</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">            if (disp.conectarSensorSonido()){</span>
+<span class="fc bfc" id="L16" title="All 4 branches covered.">                result = disp.configurarSensorSonido() &amp;&amp; confPresion;</span>
             }
         }
-<span class="nc" id="L19">        return result;   </span>
+<span class="fc" id="L19">        return result;   </span>
     }
 
     /* 

@@ -27,7 +27,7 @@ public class RonQI2Silver extends RonQI2{
 <span class="nc bnc" id="L27" title="All 2 branches missed.">        if(lecturasP.size()&gt;numLecturas){</span>
 <span class="nc" id="L28">            lecturasP.remove(0); </span>
         }
-<span class="nc" id="L30">        lecturasS.add(disp.leerSensorSonido()); //Es leerSensorSonido(), no leerSensorPresion()</span>
+<span class="nc" id="L30">        lecturasS.add(disp.leerSensorPresion());</span>
 <span class="nc bnc" id="L31" title="All 2 branches missed.">        if(lecturasS.size()&gt;numLecturas){</span>
 <span class="nc" id="L32">            lecturasS.remove(0); </span>
         }
@@ -51,11 +51,11 @@ public class RonQI2Silver extends RonQI2{
 <span class="nc" id="L51">                .average()</span>
 <span class="nc" id="L52">                .orElse(0.0);</span>
         
-<span class="nc bnc" id="L54" title="All 4 branches missed.">        if (avgP &gt; thresholdP &amp;&amp; avgS &gt; thresholdS){ //La primera comparación es &gt;, no &gt;=</span>
-<span class="nc" id="L55">            resultado = true; //Aquí se tiene que devolver true</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">        if (avgP&gt;=thresholdP &amp;&amp; avgS &gt; thresholdS){</span>
+<span class="nc" id="L55">            resultado = false;</span>
         }   
         else{
-<span class="nc" id="L58">            resultado = false; //Aquí se tiene que devolver false</span>
+<span class="nc" id="L58">            resultado = true;</span>
         }
 <span class="nc" id="L60">        return resultado;</span>
     }
