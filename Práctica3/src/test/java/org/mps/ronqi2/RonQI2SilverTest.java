@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -289,7 +292,7 @@ public class RonQI2SilverTest {
     }
 
     @Test
-    @DisplayName("Cuando el dispositvo está conectado se devuelve false")
+    @DisplayName("Cuando el dispositivo está conectado se devuelve false")
     void estaConectado_DispositivoDesconectado_DevuelveTrue(){
         //Arrange
         when(dispositivosilver.estaConectado()).thenReturn(false);
@@ -305,4 +308,20 @@ public class RonQI2SilverTest {
      * Usa el ParameterizedTest para realizar un número de lecturas previas a calcular si hay apnea o no (por ejemplo 4, 5 y 10 lecturas).
      * https://junit.org/junit5/docs/current/user-guide/index.html#writing-tests-parameterized-tests
      */
+
+    @ParameterizedTest
+    @DisplayName("El dispositivo detecta apnea")
+    @ValueSource(ints = {4,5,10})
+    void evaluarApneaSuenyo_conDiferentesLecturas_apneaDetectada(int nLecturas){
+        
+        when(dispositivosilver.leerSensorPresion()).thenReturn(25f);
+        when(dispositivosilver.leerSensorSonido()).thenReturn(35f);
+    
+        for (int i = 0; i < nLecturas; i++){
+            ronqi2silver.obtenerNuevaLectura();
+        }
+
+        assertEquals(true, ronqi2silver.evaluarApneaSuenyo());
+    }
+
 }
