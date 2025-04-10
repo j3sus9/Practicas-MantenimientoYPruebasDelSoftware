@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: org.mps.selection.TournamentSelectionTest$selectTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.036 s -- in org.mps.selection.TournamentSelectionTest$selectTests
+=======
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in org.mps.selection.TournamentSelectionTest$selectTests
+>>>>>>> 7b3d4b67ac368af6372ab35a01aa81c960497b30

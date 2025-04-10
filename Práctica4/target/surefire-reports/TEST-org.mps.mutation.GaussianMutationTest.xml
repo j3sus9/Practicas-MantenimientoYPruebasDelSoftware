@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.mps.selection.TournamentSelectionTest$selectTests" time="0.036" tests="4" errors="0" skipped="0" failures="0">
-=======
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.mps.selection.TournamentSelectionTest$selectTests" time="0.019" tests="4" errors="0" skipped="0" failures="0">
->>>>>>> 7b3d4b67ac368af6372ab35a01aa81c960497b30
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.mps.mutation.GaussianMutationTest" time="0.013" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -18,13 +14,8 @@
     <property name="java.vm.specification.version" value="23"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ES"/>
-<<<<<<< HEAD
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\jesus\AppData\Local\Temp\surefire9308478667635425476\surefirebooter-20250410135049136_3.jar C:\Users\jesus\AppData\Local\Temp\surefire9308478667635425476 2025-04-10T13-50-49_000-jvmRun1 surefire-20250410135049136_1tmp surefire_0-20250410135049136_2tmp"/>
-=======
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
     <property name="sun.java.command" value="C:\Users\Alejandro Cueto\AppData\Local\Temp\surefire14739640096369174746\surefirebooter-20250410135009264_3.jar C:\Users\Alejandro Cueto\AppData\Local\Temp\surefire14739640096369174746 2025-04-10T13-50-09_110-jvmRun1 surefire-20250410135009264_1tmp surefire_0-20250410135009264_2tmp"/>
->>>>>>> 7b3d4b67ac368af6372ab35a01aa81c960497b30
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Alejandro Cueto\Documents\GitHub\Practicas-MantenimientoYPruebasDelSoftware\Práctica4\target\test-classes;C:\Users\Alejandro Cueto\Documents\GitHub\Practicas-MantenimientoYPruebasDelSoftware\Práctica4\target\classes;C:\Users\Alejandro Cueto\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\Alejandro Cueto\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\Alejandro Cueto\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Alejandro Cueto\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\Alejandro Cueto\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Alejandro Cueto\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\Alejandro Cueto\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\Alejandro Cueto\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\Alejandro Cueto\.m2\repository\org\mockito\mockito-core\5.7.0\mockito-core-5.7.0.jar;C:\Users\Alejandro Cueto\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\Alejandro Cueto\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.9\byte-buddy-agent-1.14.9.jar;C:\Users\Alejandro Cueto\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\Alejandro Cueto\.m2\repository\org\mockito\mockito-junit-jupiter\5.7.0\mockito-junit-jupiter-5.7.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -39,11 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-<<<<<<< HEAD
-    <property name="surefire.real.class.path" value="C:\Users\jesus\AppData\Local\Temp\surefire9308478667635425476\surefirebooter-20250410135049136_3.jar"/>
-=======
     <property name="surefire.real.class.path" value="C:\Users\Alejandro Cueto\AppData\Local\Temp\surefire14739640096369174746\surefirebooter-20250410135009264_3.jar"/>
->>>>>>> 7b3d4b67ac368af6372ab35a01aa81c960497b30
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.2+7-58"/>
@@ -71,14 +58,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="select_CorrectValues_BestSelected" classname="org.mps.selection.TournamentSelectionTest$selectTests" time="0.002"/>
-<<<<<<< HEAD
-  <testcase name="select_PopulationLowerThan0_ThrowsException" classname="org.mps.selection.TournamentSelectionTest$selectTests" time="0.005"/>
-  <testcase name="select_PopulationNull_ThrowsException" classname="org.mps.selection.TournamentSelectionTest$selectTests" time="0.005"/>
-  <testcase name="select_PopulationLowerThanTournamentSize_ThrowsException" classname="org.mps.selection.TournamentSelectionTest$selectTests" time="0.004"/>
-=======
-  <testcase name="select_PopulationLowerThan0_ThrowsException" classname="org.mps.selection.TournamentSelectionTest$selectTests" time="0.003"/>
-  <testcase name="select_PopulationNull_ThrowsException" classname="org.mps.selection.TournamentSelectionTest$selectTests" time="0.003"/>
-  <testcase name="select_PopulationLowerThanTournamentSize_ThrowsException" classname="org.mps.selection.TournamentSelectionTest$selectTests" time="0.002"/>
->>>>>>> 7b3d4b67ac368af6372ab35a01aa81c960497b30
+  <testcase name="mutate_individualVacio_devuelveEvolutionaryAlgorithmException" classname="org.mps.mutation.GaussianMutationTest" time="0.002"/>
+  <testcase name="mutate_individualCorrecto_mutacionProducida" classname="org.mps.mutation.GaussianMutationTest" time="0.003"/>
+  <testcase name="mutate_individualCorrecto_noMutacionProducida" classname="org.mps.mutation.GaussianMutationTest" time="0.002"/>
+  <testcase name="mutate_individualNulo_devuelveEvolutionaryAlgorithmException" classname="org.mps.mutation.GaussianMutationTest" time="0.002"/>
 </testsuite>
