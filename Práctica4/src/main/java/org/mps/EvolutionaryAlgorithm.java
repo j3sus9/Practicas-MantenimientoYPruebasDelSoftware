@@ -50,6 +50,11 @@ public class EvolutionaryAlgorithm {
             // Creamos una nueva población para los descendientes
             int[][] offspringPopulation = new int[population.length][population[0].length];
 
+            //ERROR: HAY QUE MIRAR SI LA POBLACIÓN ES IMPAR
+            if(population.length % 2 != 0){
+                throw new EvolutionaryAlgorithmException("La población debe ser par");
+            }
+
             // Aplicamos operadores de selección y cruce para generar descendientes
             for (int i = 0; i < population.length; i += 2) {
                 // Seleccionamos dos individuos de la población actual
