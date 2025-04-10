@@ -3,32 +3,48 @@
 import java.util.Arrays;
 
 import org.mps.EvolutionaryAlgorithmException;
-import org.mps.selection.TournamentSelection;
+import org.mps.crossover.TwoPointCrossover;
 
 <span class="nc" id="L8">public class main {</span>
     public static void main(String[] args) {
         try {
-            // Crear una población de prueba
-<span class="nc" id="L12">            int[] population = {1, 5, 3, 8, 2, 7, 4, 6};</span>
-<span class="nc" id="L13">            System.out.println(&quot;Población original: &quot; + Arrays.toString(population));</span>
+            // Crear dos padres de prueba
+<span class="nc" id="L12">            int[] parent1 = {1, 2, 3, 4, 5, 6, 7, 8};</span>
+<span class="nc" id="L13">            int[] parent2 = {9, 10, 11, 12, 13, 14, 15, 16};</span>
+            
+<span class="nc" id="L15">            System.out.println(&quot;Padre 1: &quot; + Arrays.toString(parent1));</span>
+<span class="nc" id="L16">            System.out.println(&quot;Padre 2: &quot; + Arrays.toString(parent2));</span>
 
-            // Crear el operador de selección por torneo con tamaño 3
-<span class="nc" id="L16">            TournamentSelection tournament = new TournamentSelection(3);</span>
+            // Crear el operador de cruce de dos puntos
+<span class="nc" id="L19">            TwoPointCrossover crossover = new TwoPointCrossover();</span>
 
-            // Realizar la selección
-<span class="nc" id="L19">            int[] selected = tournament.select(population);</span>
-<span class="nc" id="L20">            System.out.println(&quot;Población seleccionada: &quot; + Arrays.toString(selected));</span>
+            // Realizar el cruce
+<span class="nc" id="L22">            int[][] offspring = crossover.crossover(parent1, parent2);</span>
+            
+<span class="nc" id="L24">            System.out.println(&quot;\nDescendientes después del cruce:&quot;);</span>
+<span class="nc" id="L25">            System.out.println(&quot;Hijo 1: &quot; + Arrays.toString(offspring[0]));</span>
+<span class="nc" id="L26">            System.out.println(&quot;Hijo 2: &quot; + Arrays.toString(offspring[1]));</span>
 
-            // Calcular y mostrar el promedio de la población original y la seleccionada
-<span class="nc" id="L23">            double originalAvg = Arrays.stream(population).average().orElse(0);</span>
-<span class="nc" id="L24">            double selectedAvg = Arrays.stream(selected).average().orElse(0);</span>
+            // Verificar que los descendientes tienen elementos de ambos padres
+<span class="nc" id="L29">            System.out.println(&quot;\nAnálisis de los descendientes:&quot;);</span>
+<span class="nc" id="L30">            System.out.println(&quot;Longitud Hijo 1: &quot; + offspring[0].length);</span>
+<span class="nc" id="L31">            System.out.println(&quot;Longitud Hijo 2: &quot; + offspring[1].length);</span>
 
-<span class="nc" id="L26">            System.out.println(&quot;Promedio población original: &quot; + originalAvg);</span>
-<span class="nc" id="L27">            System.out.println(&quot;Promedio población seleccionada: &quot; + selectedAvg);</span>
+            // Calcular y mostrar los promedios
+<span class="nc" id="L34">            double parent1Avg = Arrays.stream(parent1).average().orElse(0);</span>
+<span class="nc" id="L35">            double parent2Avg = Arrays.stream(parent2).average().orElse(0);</span>
+<span class="nc" id="L36">            double offspring1Avg = Arrays.stream(offspring[0]).average().orElse(0);</span>
+<span class="nc" id="L37">            double offspring2Avg = Arrays.stream(offspring[1]).average().orElse(0);</span>
 
-<span class="nc" id="L29">        } catch (EvolutionaryAlgorithmException e) {</span>
-<span class="nc" id="L30">            System.err.println(&quot;Error: &quot; + e.getMessage());</span>
-<span class="nc" id="L31">        }</span>
-<span class="nc" id="L32">    }</span>
+<span class="nc" id="L39">            System.out.println(&quot;\nPromedios:&quot;);</span>
+<span class="nc" id="L40">            System.out.println(&quot;Promedio Padre 1: &quot; + parent1Avg);</span>
+<span class="nc" id="L41">            System.out.println(&quot;Promedio Padre 2: &quot; + parent2Avg);</span>
+<span class="nc" id="L42">            System.out.println(&quot;Promedio Hijo 1: &quot; + offspring1Avg);</span>
+<span class="nc" id="L43">            System.out.println(&quot;Promedio Hijo 2: &quot; + offspring2Avg);</span>
+
+<span class="nc" id="L45">        } catch (EvolutionaryAlgorithmException e) {</span>
+<span class="nc" id="L46">            System.err.println(&quot;Error: &quot; + e.getMessage());</span>
+        }
+<span class="nc" id="L48">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
