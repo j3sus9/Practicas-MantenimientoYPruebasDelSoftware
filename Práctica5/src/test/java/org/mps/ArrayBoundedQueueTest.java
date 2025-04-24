@@ -1,3 +1,8 @@
+/*
+ * Jesús Repiso Rio
+ * Alejandro Cueto Díaz
+ */
+
 package org.mps;
 
 import java.util.Iterator;
@@ -9,9 +14,109 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mps.boundedqueue.ArrayBoundedQueue;
+import org.mps.boundedqueue.EmptyBoundedQueueException;
+import org.mps.boundedqueue.FullBoundedQueueException;
 
 public class ArrayBoundedQueueTest {
+
+    @Nested
+    @DisplayName("Test para el constructor de la lista circular")
+    public class arrayBoundedQueueTests{
+
+        @Test
+        @DisplayName("La lista circular debe tener un argumento mayor que cero, si no, lanza IllegalArgumentException")
+        public void arrayBoundedQueue_whenArgumentMinorThat1_returnsIllegalArgumentException(){
+            assertThatThrownBy(() -> {ArrayBoundedQueue listaCircular = new ArrayBoundedQueue<>(0);
+            }).isInstanceOf(IllegalArgumentException.class).hasMessage("ArrayBoundedException: capacity must be positive");
+        }
+
+       
+        @Test
+        @DisplayName("La lista circular se inicializa correctamente si recibe un argumento válido")
+        public void arrayBoundedQueue_whenValidArgument_returnsNewArrayBoundedQueue(){
+            ArrayBoundedQueue listaCircular = new ArrayBoundedQueue<>(1);
+            assertThat(listaCircular.getFirst()).isEqualTo(0);
+            assertThat(listaCircular.getLast()).isEqualTo(0);
+            assertThat(listaCircular.size()).isEqualTo(0);
+        }
+
+    }
+
+    @Nested
+    @DisplayName("Test para el método put")
+    public class putTests{
+
+        @SuppressWarnings("unchecked")
+        @Test
+        @DisplayName("La cantidad de elementos de la lista no puede ser mayor que su tamaño predefinido")
+        public void put_whenIsFull_returnsFullBoundedException(){
+            ArrayBoundedQueue listaCircular = new ArrayBoundedQueue<>(1);
+            listaCircular.put("LAPIZ");
+            assertThatThrownBy(() -> {listaCircular.put("GOMA");}).isInstanceOf(FullBoundedQueueException.class).hasMessage("put: full bounded queue");
+        }
+
+        @SuppressWarnings("unchecked")
+        @Test
+        @DisplayName("El elemento añadido a la lista no puede ser nulo")
+        public void put_whenArgumentNull_returnsIllegalArgumentException(){
+            ArrayBoundedQueue listaCircular = new ArrayBoundedQueue<>(1);
+            assertThatThrownBy(() -> {listaCircular.put(null);}).isInstanceOf(IllegalArgumentException.class).hasMessage("put: element cannot be null");
+        }
+
+        @SuppressWarnings("unchecked")
+        @Test
+        @DisplayName("El elemento ha sido añadido correctamente")
+        public void put_whenArgumentCorrectAndIsNotFull_returnsValidArray(){
+            ArrayBoundedQueue listaCircular = new ArrayBoundedQueue<>(2);
+            listaCircular.put("LAPIZ");
+            assertThat(listaCircular).contains("LAPIZ");
+            assertThat(listaCircular.getFirst()).isEqualTo(0);
+            assertThat(listaCircular.getLast()).isEqualTo(1);
+            assertThat(listaCircular.size()).isEqualTo(1);
+        }
+    }
+
+    @Nested
+    @DisplayName("Test para el método get")
+    public class getTests{
+
+        @Test
+        @DisplayName("No puede eliminarse ningún elemento de una lista vacía")
+        public void get_whenIsEmpty_returnsEmptyBoundedQueueException(){
+            ArrayBoundedQueue listaCircular = new ArrayBoundedQueue<>(1);
+            assertThatThrownBy(() -> {listaCircular.get();}).isInstanceOf(EmptyBoundedQueueException.class).hasMessage("get: empty bounded queue");
+        }
+
+        @SuppressWarnings("unchecked")
+        @Test
+        @DisplayName("Devuelve el first de la lista y actualiza sus valores")
+        public void get_whenIsNotEmpty_returnsFirstElement(){
+
+            ArrayBoundedQueue listaCircular = new ArrayBoundedQueue<>(2);
+            listaCircular.put("LAPIZ");
+            assertThat(listaCircular.get()).isEqualTo("LAPIZ");
+            assertThat(listaCircular.getFirst()).isEqualTo(1);
+            assertThat(listaCircular.getLast()).isEqualTo(1);
+            assertThat(listaCircular.size()).isEqualTo(0);
+        }
+    }
+
+    @Nested
+    @DisplayName("Test IsFull")
+    public class isFullTests{
+
+        @SuppressWarnings("unchecked")
+        @Test
+        @DisplayName("Devuelve True cuando la lista está llena")
+        public void get_whenIsFull_returnsTrue(){
+            ArrayBoundedQueue listaCircular = new ArrayBoundedQueue<>(1);
+            listaCircular.put("LAPIZ");
+            assertThat(listaCircular.isFull()).isTrue();
+        }
+    }
     
+
+
     @Nested
     @DisplayName("Tests para isEmpty()")
     public class isEmptyTests {
