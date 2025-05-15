@@ -1,5 +1,5 @@
 package com.uma.example.springuma.integration;
 
-public class ImagenControllerMockMvcIT {
+public class ImagenControllerTestClientIT {
     
 }

@@ -68,6 +68,13 @@ public class Medico implements Serializable{
         this.especialidad = especialidad;
     }
 
+    public Medico(Long id, String dni, String nombre, String especialidad){
+        this.id = id;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.especialidad = especialidad;
+    }
+
     public boolean equals(Object obj)
     {
 	    return (obj instanceof Medico) && ((Medico) obj).getDni()==this.dni;
