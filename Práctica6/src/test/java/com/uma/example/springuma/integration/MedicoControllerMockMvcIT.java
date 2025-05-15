@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uma.example.springuma.integration.base.AbstractIntegration;
 import com.uma.example.springuma.model.Medico;
 
-@DisplayName("Integración MedicoController")
 public class MedicoControllerMockMvcIT extends AbstractIntegration {
 
     @Autowired
@@ -22,7 +21,7 @@ public class MedicoControllerMockMvcIT extends AbstractIntegration {
 
     @Test
     @DisplayName("Guardar un médico y ver que se ha guardado")
-    public void saveMedico_ThereIsNoMedico_SavesMedico() throws Exception {
+    public void saveMedico_NotExists_SavesMedico() throws Exception {
         Medico medico = new Medico(1L, "23567654J", "Jesus", "Radiología");
 
         // Guardar médico
@@ -44,7 +43,7 @@ public class MedicoControllerMockMvcIT extends AbstractIntegration {
 
     @Test
     @DisplayName("Actualizar un médico y ver que se ha actualizado")
-    public void updateMedico_ThereIsMedico_UpdatesMedico() throws Exception {
+    public void updateMedico_Exists_UpdatesMedico() throws Exception {
         Medico medico = new Medico(1L, "23567654J", "Jesus", "Radiología");
 
         // Guardar médico
@@ -73,7 +72,7 @@ public class MedicoControllerMockMvcIT extends AbstractIntegration {
 
     @Test
     @DisplayName("Obtener un médico")
-    public void getMedicoById_ThereIsMedico_GetsMedico() throws Exception {
+    public void getMedicoById_Exists_GetsMedico() throws Exception {
         Medico medico = new Medico(1L, "23567654J", "Jesus", "Radiología");
 
         // Guardar médico
@@ -94,7 +93,7 @@ public class MedicoControllerMockMvcIT extends AbstractIntegration {
 
     @Test
     @DisplayName("Obtener un médico")
-    public void getMedicoByDni_ThereIsMedico_GetsMedico() throws Exception {
+    public void getMedicoByDni_Exists_GetsMedico() throws Exception {
         Medico medico = new Medico(1L, "23567654J", "Jesus", "Radiología");
 
         // Guardar médico
@@ -115,7 +114,7 @@ public class MedicoControllerMockMvcIT extends AbstractIntegration {
 
     @Test
     @DisplayName("Eliminar un médico y ver que se ha eliminado")
-    public void deleteMedico_ThereIsMedico_DeletesMedico() throws Exception {
+    public void deleteMedico_Exists_DeletesMedico() throws Exception {
         Medico medico = new Medico(1L, "23567654J", "Jesus", "Radiología");
 
         // Guardar médico
