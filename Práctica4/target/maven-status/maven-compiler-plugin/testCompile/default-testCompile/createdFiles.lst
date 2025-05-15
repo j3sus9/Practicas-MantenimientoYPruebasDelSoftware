@@ -1,0 +1,6 @@
+org\mps\selection\TournamentSelectionTest.class
+org\mps\crossover\TwoPointCrossoverTest.class
+org\mps\selection\TournamentSelectionTest$selectTests.class
+org\mps\selection\TournamentSelectionTest$TournamentSelectionTests.class
+EvolutionaryAlgorithmTest.class
+org\mps\mutation\GaussianMutationTest.class
