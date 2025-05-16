@@ -81,6 +81,7 @@ public class PacienteControllerMockMvcIT extends AbstractIntegration{
 
         // Cambiar datos del paciente y asignar medico2
 
+        paciente.setId(1L);
         paciente.setNombre("Filemon II");
         paciente.setMedico(medico2);
 

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.MultipartBodyBuilder;
@@ -36,7 +37,7 @@ public class ImagenControllerWebTestClientIT {
     @Test
     @DisplayName("Sube una imagen para un paciente correctamente")
     void uploadImage_shouldSucceed_whenValidData() throws Exception {
-        File uploadFile = new File("./src/test/resources/uma.png");
+    
 
         Paciente paciente = new Paciente();
         paciente.setId(1L);
@@ -44,8 +45,18 @@ public class ImagenControllerWebTestClientIT {
         paciente.setEdad(30);
         paciente.setDni("12345678B");
 
+        client.post()
+            .uri("/paciente")
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(BodyInserters.fromValue(paciente))
+            .exchange()
+            .expectStatus().isCreated();
+
+        ClassPathResource imagen = new ClassPathResource("healthy.png");
+        File archivoSubida = imagen.getFile();
+
         MultipartBodyBuilder builder = new MultipartBodyBuilder();
-        builder.part("image", new FileSystemResource(uploadFile));
+        builder.part("image", new FileSystemResource(archivoSubida));
         builder.part("paciente", paciente);
 
         client.post()
@@ -66,17 +77,26 @@ public class ImagenControllerWebTestClientIT {
     
        //Creacion paciente e imagen
         Paciente paciente = new Paciente();
-        paciente.setId(2L);
+        paciente.setId(1L); 
         paciente.setNombre("Ofelia");
         paciente.setEdad(50);
         paciente.setDni("12345678D");
 
-        File uploadFile = new File("./src/test/resources/uma.png");
-        MultipartBodyBuilder builder = new MultipartBodyBuilder();
-        builder.part("image", new FileSystemResource(uploadFile));
-        builder.part("paciente", paciente);
+        client.post()
+            .uri("/paciente")
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(BodyInserters.fromValue(paciente))
+            .exchange()
+            .expectStatus().isCreated();
 
-        String responseBody = client.post()
+        ClassPathResource imagen = new ClassPathResource("healthy.png");
+        File archivoSubida = imagen.getFile();
+
+        MultipartBodyBuilder builder = new MultipartBodyBuilder();
+            builder.part("image", new FileSystemResource(archivoSubida));
+            builder.part("paciente", paciente);
+                    
+        client.post()
             .uri("/imagen")
             .contentType(MediaType.MULTIPART_FORM_DATA)
             .body(BodyInserters.fromMultipartData(builder.build()))
@@ -88,7 +108,7 @@ public class ImagenControllerWebTestClientIT {
 
         //Obtener la imagen asociada al paciente
         List<Imagen> imagenes = client.get()
-            .uri("/imagen/paciente/2")
+            .uri("/imagen/paciente/1")
             .exchange()
             .expectStatus().isOk()
             .returnResult(Imagen.class)
