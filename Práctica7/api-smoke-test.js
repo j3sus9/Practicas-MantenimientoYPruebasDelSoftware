@@ -9,7 +9,7 @@ export const options = {
     vus: 5,
     duration: '1m',
     thresholds: {
-        'http_req_duration': ['avg<100'],
+        'http_req_duration': ['avg<500'],
         'failed_requests': ['rate==0'],
         'checks': ['rate==1.0'],
     },

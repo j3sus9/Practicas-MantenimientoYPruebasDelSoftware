@@ -1,3 +1,8 @@
+/*
+ * Jesús Repiso Rio
+ * Alejandro Cueto Díaz
+ */
+
 package com.uma.example.springuma.integration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;

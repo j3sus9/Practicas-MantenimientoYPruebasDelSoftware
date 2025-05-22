@@ -4,7 +4,7 @@ import { check } from 'k6';
 import { Rate } from 'k6/metrics';
 
 const failRate = new Rate('failed_requests');
-const targetVUs = 267;
+const targetVUs = 4964;
 
 export const options = {
     stages: [

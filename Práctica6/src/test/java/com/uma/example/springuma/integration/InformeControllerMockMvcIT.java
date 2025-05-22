@@ -1,3 +1,8 @@
+/*
+ * Jesús Repiso Rio
+ * Alejandro Cueto Díaz
+ */
+
 package com.uma.example.springuma.integration;
 
 import org.junit.jupiter.api.DisplayName;

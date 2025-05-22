@@ -5,14 +5,12 @@ import { Rate } from 'k6/metrics';
 
 const failRate = new Rate('failed_requests');
 
-const spikeVUs = 214;
+const spikeVUs = 3972;
 
 export const options = {
     stages: [
-        { duration: '10s', target: 10 },        
-        { duration: '2m', target: spikeVUs },   
-        { duration: '3m', target: spikeVUs },    
-        { duration: '1m', target: 0 },         
+        { duration: '2m', target: spikeVUs },    
+        { duration: '2m', target: 0 },         
     ],
     
     thresholds: {
